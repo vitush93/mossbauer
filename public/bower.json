@@ -1,0 +1,9 @@
+{
+  "name": "vitush-frontend",
+  "devDependencies": {
+    "jquery": "~2",
+    "foundation": "zurb/bower-foundation",
+    "handlebars": "~3.0.3",
+    "underscore": "~1.8.3"
+  }
+}

@@ -1,0 +1,14 @@
+# global stuff
+.idea/
+
+# client stuff
+public/bower_components/
+public/node_modules/
+public/src/js/templates.js
+
+# server stuff
+vendor/
+config.php
+
+
+

@@ -1,0 +1,7 @@
+{
+  "require": {
+    "slim/slim": "~2.6.2",
+    "latte/latte": "~2.3.4",
+    "nette/database": "~2.3.6"
+  }
+}
