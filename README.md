@@ -1,4 +1,4 @@
-# Frontend
+# Mossbauer
 
 My grunt Handlebars + Browserify scaffolding.
 
