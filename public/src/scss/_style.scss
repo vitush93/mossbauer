@@ -1,3 +1,152 @@
 body {
-  background: $bgcolor;
+  //background: $bgcolor;
+  font-family: $roboto;
+}
+
+#header {
+  background: #455a64;
+  height: 150px;
+}
+
+// temporary
+#logo {
+  display: inline-block;
+  color: #fff;
+  font-weight: bold;
+  margin-top: 50px;
+  font-size: 24px;
+}
+
+#menu {
+  min-height: 60px;
+  background: #607d8b;
+}
+
+#main-menu {
+  margin: 0;
+  padding: 0;
+  li {
+    @media #{$medium-up} {
+      float: left;
+    }
+    display: block;
+    list-style-type: none;
+    a {
+      @media #{$medium-up} {
+        text-align: center;
+        height: 60px;
+        line-height: 60px;
+      }
+
+      height: 40px;
+      line-height: 40px;
+      display: block;
+      color: #c2ced4;
+      font-weight: bold;
+      font-size: 15px;
+      padding-left: 15px;
+      padding-right: 15px;
+      transition: 0.1s;
+      &:hover, &.active {
+        color: #fefefe;
+        transition: 0.1s;
+      }
+    }
+  }
+}
+
+#showcase {
+  //background-color: #eee;
+  background: url('../img/congruent_pentagon.png');
+  min-height: 400px;
+  color: #333;
+
+  p {
+    font-size: 18px;
+    color: inherit;
+  }
+
+  h2 {
+    font-weight: bold;
+    font-size: 40px;
+    color: inherit;
+  }
+}
+
+.showcase-content {
+  padding: 50px 15px;
+}
+
+.button {
+  text-transform: uppercase;
+  font-weight: bold;
+  text-shadow: none;
+  &.alert {
+    background: #c95c5c;
+    &:hover {
+      background: #c95c5c + 20;
+    }
+  }
+}
+
+#calendar {
+  background: #fff;
+  @media #{$large-up} {
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 50px;
+  }
+
+  margin-bottom: 50px;
+  margin-left: 15px;
+  margin-right: 15px;
+  height: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+#calendar-heading {
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  background: #2f2d2a + 30;
+  color: #fff;
+}
+
+#calendar-content {
+  ul {
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    @media #{$large-up} {
+      font-size: 16px;
+    }
+    display: block;
+    list-style-type: none;
+    padding: 7px 10px;
+    border-bottom: 1px solid #ccc;
+    font-size: 14px;
+  }
+
+  strong {
+    width: 60px;
+    display: inline-block;
+    color: #999;
+  }
+}
+
+#callout {
+  p {
+    font-size: 20px;
+    padding: 20px 15px;
+  }
+
+  a {
+    position: relative;
+    top: -2px;
+    padding: 8px;
+    font-size: 12px;
+    margin: 0;
+  }
 }

@@ -1,22 +1,51 @@
 {extends '../layout.latte'}
 
 {block content}
-
     <div id="showcase">
-        <img src="public/img/showcase.png" alt="" title="" id="showcase-img">
-
         <div id="showcase-content">
-            <h2>Big news title</h2>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>
-                Ut facilisis leo non mi vulputate luctus.<br><br>
-
-                Morbi eget ipsum non lectus consectetur pulvinar non non dui.
-            </p>
-            <a href="#" class="button radius alert small">read more</a>
+            <div class="row">
+                <div class="large-6 columns">
+                    <div class="showcase-content">
+                        <h2>GDC 2016 Conference</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Ut facilisis leo non mi vulputate luctus.<br><br>
+                            Morbi eget ipsum non lectus consectetur pulvinar non non dui.
+                        </p>
+                        <a href="#" class="button radius alert small">read more</a>
+                    </div>
+                </div>
+                <div class="large-6 columns">
+                    <div id="calendar">
+                        <div id="calendar-heading">Upcoming</div>
+                        <div id="calendar-content">
+                            <ul>
+                                <li>
+                                    <strong>26 Jan</strong> <a href="" target="_blank">IEM Katowice 2016</a>
+                                </li>
+                                <li>
+                                    <strong>13 Feb</strong> <a href="" target="_blank">Copenhagen Games 2016</a>
+                                </li>
+                                <li>
+                                    <strong>1 Jun</strong> <a href="" target="_blank">Dreamhack Summmer 2016</a>
+                                </li>
+                                <li>
+                                    <strong>14 Oct</strong> <a href="" target="_blank">E3 2016</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
+    <div class="row" id="callout">
+        <div class="large-12 columns">
+            <p>
+                Interested in Mössbauer spectroscopy? Have a look at the <a href="" class="button radius small">student positions</a>
+            </p>
+        </div>
+    </div>
     <div class="row">
         <div class="large-12 columns">
             <div class="grid">
@@ -38,6 +67,4 @@
             </div>
         </div>
     </div>
-
-
 {/block}
