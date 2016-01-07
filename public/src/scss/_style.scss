@@ -1,11 +1,10 @@
 body {
-  //background: $bgcolor;
+  background: #333;
   font-family: $roboto;
 }
 
 #header {
   background: #455a64;
-  height: 150px;
 }
 
 // temporary
@@ -18,7 +17,7 @@ body {
 }
 
 #menu {
-  min-height: 60px;
+  min-height: 50px;
   background: #607d8b;
 }
 
@@ -34,8 +33,8 @@ body {
     a {
       @media #{$medium-up} {
         text-align: center;
-        height: 60px;
-        line-height: 60px;
+        height: 50px;
+        line-height: 50px;
       }
 
       height: 40px;
@@ -108,7 +107,8 @@ body {
   padding: 10px;
   font-size: 16px;
   font-weight: bold;
-  background: #2f2d2a + 30;
+  //background: #2f2d2a + 30;
+  background: #2F414A;
   color: #fff;
 }
 
@@ -137,9 +137,11 @@ body {
 }
 
 #callout {
+  background: #ECE3CA;
   p {
     font-size: 20px;
     padding: 20px 15px;
+    margin: 0;
   }
 
   a {
@@ -149,4 +151,71 @@ body {
     font-size: 12px;
     margin: 0;
   }
+}
+
+#all-news {
+  a {
+    font-size: 18px;
+  }
+  p {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+#news {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background: #fff;
+}
+
+.article {
+  background: #f7f7f7;
+  margin-bottom: 30px;
+}
+
+.article-header {
+  img {
+    width: 100%;
+    height: 100%;
+  }
+  h3 {
+    font-size: 24px;
+    a {
+      color: #c95c5c;
+      transition: 0.1s;
+      &:hover {
+        color: #c95c5c - 60;
+        transition: 0.1s;
+      }
+    }
+    padding: 15px;
+    margin: 0;
+  }
+  small.article-date {
+    font-size: 11px;
+    color: #888;
+  }
+}
+
+.article-section {
+  padding: 0 15px;
+  p {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.article-footer {
+  padding: 15px;
+  a {
+    margin: 0;
+    padding: 8px !important;
+    font-size: 11px !important;
+    background: #aaa;
+  }
+}
+
+#footer {
+
 }
