@@ -29,6 +29,16 @@ $app->get('/news', function () {
 
 $app->get('/news/:slug', function ($slug) {
     // TODO render single article
+
+    /** @var \Latte\Engine $latte */
+    $latte = \Mossbauer\Core\Container::get('latte');
+
+    $breadcrumbs = [
+        ['title' => 'News archive', 'link' => '/news'],
+        ['title' => 'News entry title']
+    ];
+
+    $latte->render('templates/news/single.latte', ['breadcrumbs' => $breadcrumbs]);
 });
 
 $app->get('/:page', function ($page) {
