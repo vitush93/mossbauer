@@ -15,4 +15,34 @@ $app->get('/', function () {
     $latte->render('templates/home/home.latte');
 });
 
+$app->get('/news', function () {
+
+    /** @var \Latte\Engine $latte */
+    $latte = \Mossbauer\Core\Container::get('latte');
+
+    $breadcrumbs = [
+        ['title' => 'News archive']
+    ];
+
+    $latte->render('templates/news/news.latte', ['breadcrumbs' => $breadcrumbs]);
+});
+
+$app->get('/news/:slug', function ($slug) {
+    // TODO render single article
+});
+
+$app->get('/:page', function ($page) {
+    // TODO retrieve page
+
+    /** @var \Latte\Engine $latte */
+    $latte = \Mossbauer\Core\Container::get('latte');
+
+    $latte->render('templates/page/page.latte', [
+        'breadcrumbs' => [
+            ['title' => 'Page title']
+        ],
+        'page' => 'Page title'
+    ]);
+});
+
 $app->run();

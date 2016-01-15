@@ -1,0 +1,16 @@
+<div id="breadcrumbs">
+    <div class="row">
+        <div class="large-12 columns">
+            <ul class="breadcrumbs">
+                <li><a href="/">Home</a></li>
+                {foreach $breadcrumbs as $b}
+                    {if $iterator->isLast()}
+                        <li class="current"><a href="#">{$b[title]}</a></li>
+                    {else}
+                        <li><a href="{$b[link]}">{$b[title]}</a></li>
+                    {/if}
+                {/foreach}
+            </ul>
+        </div>
+    </div>
+</div>
