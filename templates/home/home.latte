@@ -6,13 +6,7 @@
             <div class="row">
                 <div class="large-6 columns">
                     <div class="showcase-content">
-                        <h2>GDC 2016 Conference</h2>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Ut facilisis leo non mi vulputate luctus.<br><br>
-                            Morbi eget ipsum non lectus consectetur pulvinar non non dui.
-                        </p>
-                        <a href="#" class="button radius alert small">read more</a>
+                        {region('Showcase')}
                     </div>
                 </div>
                 <div class="large-6 columns">
@@ -20,18 +14,11 @@
                         <div id="calendar-heading">Upcoming</div>
                         <div id="calendar-content">
                             <ul>
-                                <li>
-                                    <strong>26 Jan</strong> <a href="" target="_blank">IEM Katowice 2016</a>
-                                </li>
-                                <li>
-                                    <strong>13 Feb</strong> <a href="" target="_blank">Copenhagen Games 2016</a>
-                                </li>
-                                <li>
-                                    <strong>1 Jun</strong> <a href="" target="_blank">Dreamhack Summmer 2016</a>
-                                </li>
-                                <li>
-                                    <strong>14 Oct</strong> <a href="" target="_blank">E3 2016</a>
-                                </li>
+                                {foreach collection('Upcoming')->find() as $item}
+                                    <li>
+                                        <strong>{$item['Date']|date:'M j'}</strong> <a href="{$item['Link']}" target="_blank">{$item['Title']}</a>
+                                    </li>
+                                {/foreach}
                             </ul>
                         </div>
                     </div>

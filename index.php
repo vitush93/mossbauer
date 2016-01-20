@@ -2,6 +2,7 @@
 
 define('ROOT_DIR', __DIR__);
 
+require_once 'admin/bootstrap.php';
 require_once 'vendor/autoload.php';
 require_once 'autoload.php';
 
