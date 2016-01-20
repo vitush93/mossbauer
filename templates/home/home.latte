@@ -39,28 +39,28 @@
 
     <div id="news">
         <div class="row">
-            {for $i = 0; $i < 4; $i++}
-            <div class="large-3 medium-6 small-12 columns {if $i == 3}end{/if}">
+
+            {foreach collection('News')->find() as $n}
+            {breakIf $iterator->getCounter() > 4}
+            <div class="large-3 medium-6 small-12 columns {if $iterator->isLast()}end{/if}">
                 <article class="article">
                     <header class="article-header">
-                        {if $i == 0}<a href=""><img src="public/img/cern.png" alt="" title=""></a>{/if}
-                        <h3><a href="">News title</a>  <small class="article-date">19 Oct 15</small></h3>
+                        {if isset($n['Image'])}
+                            <a href="/news/{$n['Title_slug']}"><img src="/{$n['Image']|substr:5}" alt="" title=""></a>
+                        {/if}
+
+                        <h3><a href="">{$n['Title']}</a>  <small class="article-date">{$n['created']|date:'j M y'}</small></h3>
                     </header>
                     <section class="article-section">
-                        <p>
-                        Lorem ipsum dolor sit amet,
-                        consectetur adipiscing elit. Ut
-                        facilisis leo non mi vulputate
-                        luctus.
-                        </p>
+                        {$n['Perex']|noescape}
                     </section>
                     <footer class="article-footer">
-                        <a href="" class="read-more button radius small">read more</a>
-
+                        <a href="/news/{$n['Title_slug']}" class="read-more button radius small">read more</a>
                     </footer>
                 </article>
             </div>
-            {/for}
+            {/foreach}
+
             <div class="large-12 columns" id="all-news">
                 <p>
                     <a href="/news">See all news..</a>
