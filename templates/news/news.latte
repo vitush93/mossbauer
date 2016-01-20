@@ -11,46 +11,55 @@
             </div>
         </div>
 
-        {for $i = 0; $i < 6; $i++}
+        {foreach $news as $n}
             <article class="news-entry">
                 <div class="row">
                     <div class="small-12 medium-4 columns">
                         <aside class="news-image">
-                            <a href="/news/news-entry-title" class="th"><img src="/public/img/cern.png" alt="" title=""></a>
+                            {if isset($n['Image'])}
+                            <a href="/news/{$n['Title_slug']}" class="th"><img src="/{$n['Image']|substr:5}" alt="" title=""></a>
+                            {/if}
                         </aside>
                     </div>
                     <div class="small-12 medium-6 columns end">
                         <header class="news-title">
-                            <h2><a href="/news/news-entry-title">News entry title</a></h2>
+                            <h2><a href="/news/{$n['Title_slug']}">{$n['Title']}</a></h2>
                         </header>
                         <section class="news-intro">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vitae finibus nulla.
-                                Curabitur nec tortor hendrerit elit mattis egestas mollis id metus. Proin ultricies
-                                velit vitae mauris sagittis, et mattis enim bibendum... <a href="" class="news-continue">continue reading &raquo;</a>
-                            </p>
+                            {$n['Perex']|noescape} <a href="/news/{$n['Title_slug']}" class="news-continue">continue reading &raquo;</a>
                         </section>
                         <footer class="news-footer">
-                            posted on 19 December 2015
+                            posted on {$n['created']|date:'j F Y'}
                         </footer>
                     </div>
                 </div>
             </article>
-        {/for}
+        {/foreach}
 
         <div class="row">
             <div class="large-12">
                 <div class="pagination-centered">
                     <ul class="pagination">
-                        <li class="arrow unavailable"><a href="">&laquo;</a></li>
-                        <li class="current"><a href="">1</a></li>
-                        <li><a href="">2</a></li>
-                        <li><a href="">3</a></li>
-                        <li><a href="">4</a></li>
-                        <li class="unavailable"><a href="">&hellip;</a></li>
-                        <li><a href="">12</a></li>
-                        <li><a href="">13</a></li>
-                        <li class="arrow"><a href="">&raquo;</a></li>
+                        {if $paginator->page == 1}
+                            <li class="arrow unavailable"><a href="">&laquo;</a></li>
+                        {else}
+                            <li class="arrow"><a href="/news?page={$paginator->page - 1}">&laquo;</a></li>
+                        {/if}
+
+                        {for $i = 1; $i <= $paginator->getPageCount(); $i++}
+                            {if $paginator->page == $i}
+                                <li class="current"><a href="#">{$i}</a></li>
+                            {else}
+                                <li><a href="/news?page={$i}">{$i}</a></li>
+                            {/if}
+                        {/for}
+
+                        {if $paginator->page == $paginator->getPageCount()}
+                            <li class="arrow unavailable"><a href="">&raquo;</a></li>
+                        {else}
+                            <li class="arrow"><a href="{$paginator->page + 1}">&raquo;</a></li>
+                        {/if}
+
                     </ul>
                 </div>
             </div>

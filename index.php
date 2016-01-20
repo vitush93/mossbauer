@@ -16,16 +16,36 @@ $app->get('/', function () {
     $latte->render('templates/home/home.latte');
 });
 
-$app->get('/news', function () {
+$app->get('/news', function () use ($app) {
 
     /** @var \Latte\Engine $latte */
     $latte = \Mossbauer\Core\Container::get('latte');
 
+    // prepare breadcrumbs
     $breadcrumbs = [
         ['title' => 'News archive']
     ];
 
-    $latte->render('templates/news/news.latte', ['breadcrumbs' => $breadcrumbs]);
+    $newsCount = cockpit('collections:count', 'News');
+
+    $pageParam = $app->request()->get('page');
+    $currentPage = $pageParam ? $pageParam : 1;
+
+    $paginator = new \Nette\Utils\Paginator();
+    $paginator->setItemCount($newsCount);
+    $paginator->setItemsPerPage(6);
+    $paginator->setPage($currentPage);
+
+    $limit = $paginator->getItemsPerPage(); // per page
+    $offset = $paginator->getOffset();
+
+    $news = collection('News')->find()->limit($limit)->skip($offset)->toArray();
+
+    $latte->render('templates/news/news.latte', [
+        'breadcrumbs' => $breadcrumbs,
+        'paginator' => $paginator,
+        'news' => $news
+    ]);
 });
 
 $app->get('/news/:slug', function ($slug) {
