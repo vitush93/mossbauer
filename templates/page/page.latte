@@ -6,6 +6,7 @@
 
     <div class="content static-content">
         <div class="row">
+            {if isset($page[Menu])}
             <div class="large-3 medium-4 columns">
                 <div class="page-menu">
                     <div class="page-menu-heading">Menu</div>
@@ -16,7 +17,8 @@
                     </div>
                 </div>
             </div>
-            <div class="large-9 medium-8 columns">
+            {/if}
+            <div class="{if isset($page[Menu])}large-9 medium-8{else}large-12{/if} columns">
                 <h1 class="page-heading">{$page[Title]}</h1>
 
                 {$page[Text]|noescape}
