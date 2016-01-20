@@ -9,6 +9,7 @@ public/src/js/templates.js
 # server stuff
 vendor/
 !admin/vendor
+!admin/assets/vendor
 config.php
 
 
