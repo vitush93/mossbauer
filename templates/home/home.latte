@@ -49,7 +49,7 @@
                             <a href="/news/{$n['Title_slug']}"><img src="/{$n['Image']|substr:5}" alt="" title=""></a>
                         {/if}
 
-                        <h3><a href="">{$n['Title']}</a>  <small class="article-date">{$n['created']|date:'j M y'}</small></h3>
+                        <h3><a href="/news/{$n['Title_slug']}">{$n['Title']}</a>  <small class="article-date">{$n['created']|date:'j M y'}</small></h3>
                     </header>
                     <section class="article-section">
                         {$n['Perex']|noescape}

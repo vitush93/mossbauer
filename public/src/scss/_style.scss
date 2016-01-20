@@ -257,6 +257,10 @@ body {
   }
 }
 
+.news-perex p {
+  font-size: 20px !important;
+}
+
 .news-image {
   margin-bottom: 10px;
 }
@@ -368,6 +372,9 @@ body {
     &:hover {
       color: #8d2020;
       text-decoration: underline;
+    }
+    &.active {
+      font-weight: bold;
     }
   }
 }

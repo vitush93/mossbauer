@@ -49,30 +49,41 @@ $app->get('/news', function () use ($app) {
 });
 
 $app->get('/news/:slug', function ($slug) {
-    // TODO render single article
 
     /** @var \Latte\Engine $latte */
     $latte = \Mossbauer\Core\Container::get('latte');
+
+    $entry = collection('News')->findOne(['Title_slug' => $slug]);
+    if ($entry == null) {
+        // TODO 404 not found
+    }
 
     $breadcrumbs = [
         ['title' => 'News archive', 'link' => '/news'],
-        ['title' => 'News entry title']
+        ['title' => $entry['Title']]
     ];
 
-    $latte->render('templates/news/single.latte', ['breadcrumbs' => $breadcrumbs]);
+    $latte->render('templates/news/single.latte', [
+        'breadcrumbs' => $breadcrumbs,
+        'entry' => $entry
+    ]);
 });
 
 $app->get('/:page', function ($page) {
-    // TODO retrieve page
 
     /** @var \Latte\Engine $latte */
     $latte = \Mossbauer\Core\Container::get('latte');
 
+    $page = collection('Pages')->findOne(['Title_slug' => $page]);
+    if ($page == null) {
+        // TODO 404 not found
+    }
+
     $latte->render('templates/page/page.latte', [
         'breadcrumbs' => [
-            ['title' => 'Page title']
+            ['title' => $page['Title']]
         ],
-        'page' => 'Page title'
+        'page' => $page,
     ]);
 });
 

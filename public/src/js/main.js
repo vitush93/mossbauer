@@ -8,3 +8,5 @@ var Templates = require('./templates'); // load handlebars templates
 //    itemSelector: '.grid-item',
 //    columnWidth: 200
 //});
+
+require('./page-menus')();
