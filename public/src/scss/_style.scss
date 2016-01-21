@@ -381,3 +381,28 @@ body {
 .static-content {
   padding-bottom: 50px;
 }
+
+#dead-link {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  img {
+    margin-top: 50px;
+    @media #{$large-up} {
+      max-width: 80%;
+    }
+    max-width: 100%;
+  }
+  h1 {
+    @media #{$large-up} {
+      font-size: 8rem;
+    }
+    font-size: 5rem;
+    font-weight: bold;
+    small {
+      display: block;
+      font-size: 1rem;
+    }
+    color: rgba(96, 125, 139, 0.5);
+    text-transform: uppercase;
+  }
+}

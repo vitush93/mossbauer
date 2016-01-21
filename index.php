@@ -58,7 +58,9 @@ $app->get('/news/:slug', function ($slug) use ($latte) {
 
     $entry = collection('News')->findOne(['Title_slug' => $slug]);
     if ($entry == null) {
-        // TODO 404 not found
+        $latte->render('templates/error.latte');
+
+        return;
     }
 
     $breadcrumbs = [
@@ -79,7 +81,9 @@ $app->get('/:page', function ($page) use ($latte) {
 
     $page = collection('Pages')->findOne(['Title_slug' => $page]);
     if ($page == null) {
-        // TODO 404 not found
+        $latte->render('templates/error.latte');
+
+        return;
     }
 
     $latte->render('templates/page/page.latte', [
