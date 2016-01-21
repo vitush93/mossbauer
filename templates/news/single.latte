@@ -4,11 +4,6 @@
 
     {include '../breadcrumbs.latte'}
     <div class="content static-content">
-        <div class="row">
-            <div class="large-12 column">
-                <h1 class="page-heading">{$entry['Title']}</h1>
-            </div>
-        </div>
 
         <article class="news-entry">
             <div class="row">
@@ -19,7 +14,11 @@
                         {/if}
                     </aside>
                 </div>
+
                 <div class="small-12 medium-6 columns end">
+                    <header class="news-title">
+                        <h1 class="page-heading">{$entry['Title']}</h1>
+                    </header>
                     <section class="news-perex">
                         {$entry['Perex']|noescape}
                     </section>
