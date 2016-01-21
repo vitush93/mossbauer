@@ -14,7 +14,7 @@
                         <div id="calendar-heading">Upcoming</div>
                         <div id="calendar-content">
                             <ul>
-                                {foreach collection('Upcoming')->find() as $item}
+                                {foreach $upcoming as $item}
                                     <li>
                                         <strong>{$item['Date']|date:'M j'}</strong> <a href="{$item['Link']}" target="_blank">{$item['Title']}</a>
                                     </li>

@@ -6,6 +6,9 @@ require_once 'admin/bootstrap.php';
 require_once 'vendor/autoload.php';
 require_once 'autoload.php';
 
+/** @var \Latte\Engine $latte */
+$latte = \Mossbauer\Core\Container::get('latte');
+
 $app = new \Slim\Slim();
 
 $app->get('/', function () {
@@ -13,13 +16,16 @@ $app->get('/', function () {
     /** @var \Latte\Engine $latte */
     $latte = \Mossbauer\Core\Container::get('latte');
 
-    $latte->render('templates/home/home.latte');
+    $upcoming = collection('Upcoming')->find(function ($item) {
+        $date = new \Nette\Utils\DateTime($item['Date']);
+
+        return $date > new \Nette\Utils\DateTime();
+    })->toArray();
+
+    $latte->render('templates/home/home.latte', ['upcoming' => $upcoming]);
 });
 
-$app->get('/news', function () use ($app) {
-
-    /** @var \Latte\Engine $latte */
-    $latte = \Mossbauer\Core\Container::get('latte');
+$app->get('/news', function () use ($app, $latte) {
 
     // prepare breadcrumbs
     $breadcrumbs = [
@@ -48,10 +54,7 @@ $app->get('/news', function () use ($app) {
     ]);
 });
 
-$app->get('/news/:slug', function ($slug) {
-
-    /** @var \Latte\Engine $latte */
-    $latte = \Mossbauer\Core\Container::get('latte');
+$app->get('/news/:slug', function ($slug) use ($latte) {
 
     $entry = collection('News')->findOne(['Title_slug' => $slug]);
     if ($entry == null) {
@@ -69,7 +72,7 @@ $app->get('/news/:slug', function ($slug) {
     ]);
 });
 
-$app->get('/:page', function ($page) {
+$app->get('/:page', function ($page) use ($latte) {
 
     /** @var \Latte\Engine $latte */
     $latte = \Mossbauer\Core\Container::get('latte');
