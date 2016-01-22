@@ -20,9 +20,14 @@ $app->get('/', function () {
         $date = new \Nette\Utils\DateTime($item['Date']);
 
         return $date > new \Nette\Utils\DateTime();
-    })->toArray();
+    })->limit(5)->toArray();
 
-    $latte->render('templates/home/home.latte', ['upcoming' => $upcoming]);
+    $news = collection('News')->find()->sort(['created' => -1])->toArray();
+
+    $latte->render('templates/home/home.latte', [
+        'upcoming' => $upcoming,
+        'news' => $news
+    ]);
 });
 
 $app->get('/news', function () use ($app, $latte) {
@@ -45,7 +50,7 @@ $app->get('/news', function () use ($app, $latte) {
     $limit = $paginator->getItemsPerPage(); // per page
     $offset = $paginator->getOffset();
 
-    $news = collection('News')->find()->limit($limit)->skip($offset)->toArray();
+    $news = collection('News')->find()->limit($limit)->skip($offset)->sort(['created' => -1])->toArray();
 
     $latte->render('templates/news/news.latte', [
         'breadcrumbs' => $breadcrumbs,

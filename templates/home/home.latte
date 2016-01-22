@@ -40,7 +40,7 @@
     <div id="news">
         <div class="row">
 
-            {foreach collection('News')->find() as $n}
+            {foreach $news as $n}
             {breakIf $iterator->getCounter() > 4}
             <div class="large-3 medium-6 small-12 columns {if $iterator->isLast()}end{/if}">
                 <article class="article">
