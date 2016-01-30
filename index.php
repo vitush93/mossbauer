@@ -20,7 +20,7 @@ $app->get('/', function () {
         $date = new \Nette\Utils\DateTime($item['Date']);
 
         return $date > new \Nette\Utils\DateTime();
-    })->limit(5)->toArray();
+    })->limit(5)->sort(['Date' => 1])->toArray();
 
     $news = collection('News')->find()->sort(['created' => -1])->toArray();
 
