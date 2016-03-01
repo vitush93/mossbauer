@@ -1,0 +1,42 @@
+{extends '../layout.latte'}
+
+{block content}
+
+    {include '../breadcrumbs.latte'}
+
+    <div class="content static-content">
+
+
+        <div class="row">
+            <div class="large-3 medium-4 columns">
+                <div class="page-menu">
+                    <div class="page-menu-heading">Menu</div>
+                    <div class="page-menu-content">
+                        <ul class="js-page-menus">
+                            {region('AboutTheLabMenu')}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="large-9 medium-8 columns">
+                <h1 class="page-heading">People</h1>
+
+                <div class="people row">
+                {foreach $people as $p}
+                    <div class="people-thumb large-4 columns {if $iterator->isLast()}end{/if}">
+                        <a class="th people-image" href="/people/{$p[Name_slug]}">
+                            <img src="/{$p[Image]|substr:5}" alt="" title="">
+                        </a>
+                        <p class="people-name">
+                            <a href="/people/{$p[Name_slug]}">{$p[Name]}</a>
+                                <br>
+                            {$p[Position]}
+                        </p>
+                    </div>
+                {/foreach}
+                </div>
+            </div>
+        </div>
+    </div>
+{/block}

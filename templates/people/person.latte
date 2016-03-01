@@ -1,0 +1,28 @@
+{extends '../layout.latte'}
+
+{block content}
+
+    {include '../breadcrumbs.latte'}
+
+    <div class="content static-content">
+
+
+        <div class="row">
+            <div class="large-3 medium-4 columns">
+                <div class="page-menu">
+                    <div class="page-menu-heading">Menu</div>
+                    <div class="page-menu-content">
+                        <ul class="js-page-menus">
+                            {region('AboutTheLabMenu')}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="large-9 medium-8 columns">
+                <h1 class="page-heading">Mgr. Denisa Kubaniova, PhD.</h1>
+
+            </div>
+        </div>
+    </div>
+{/block}

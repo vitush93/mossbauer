@@ -30,6 +30,20 @@ $app->get('/', function () {
     ]);
 });
 
+$app->get('/people', function () use ($app, $latte) {
+
+    $breadcrumbs = [
+        ['title' => 'People']
+    ];
+
+    $people = collection('People')->find()->toArray();
+
+    $latte->render('templates/people/people.latte', [
+        'breadcrumbs' => $breadcrumbs,
+        'people' => $people
+    ]);
+});
+
 $app->get('/news', function () use ($app, $latte) {
 
     // prepare breadcrumbs
