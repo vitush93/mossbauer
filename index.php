@@ -44,6 +44,21 @@ $app->get('/people', function () use ($app, $latte) {
     ]);
 });
 
+$app->get('/people/:slug', function ($slug) use ($app, $latte) {
+
+    $person = collection('People')->findOne(['Name_slug' => $slug]);
+
+    $breadcrumbs = [
+        ['title' => 'People', 'link' => '/people'],
+        ['title' => $person['Name']]
+    ];
+
+    $latte->render('templates/people/person.latte', [
+        'breadcrumbs' => $breadcrumbs,
+        'person' => $person
+    ]);
+});
+
 $app->get('/news', function () use ($app, $latte) {
 
     // prepare breadcrumbs
