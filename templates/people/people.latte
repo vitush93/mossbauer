@@ -26,7 +26,11 @@
                 {foreach $people as $p}
                     <div class="people-thumb large-4 columns {if $iterator->isLast()}end{/if}">
                         <a class="th people-image" href="/people/{$p[Name_slug]}">
+                            {if isset($p[Image])}
                             <img src="/{$p[Image]|substr:5}" alt="" title="">
+                            {else}
+                            <img src="/public/img/placeholder-user.jpg" alt="" title="">
+                            {/if}
                         </a>
                         <p class="people-name">
                             <a href="/people/{$p[Name_slug]}">{$p[Name]}</a>
