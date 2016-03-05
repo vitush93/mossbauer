@@ -30,6 +30,21 @@ $app->get('/', function () {
     ]);
 });
 
+$app->get('/gallery', function () use ($app, $latte) {
+
+    $breadcrumbs = [
+        ['title' => 'Gallery']
+    ];
+
+    $cockpit = cockpit();
+    $galleries = $cockpit->db->find('common/galleries');
+
+    $latte->render('templates/gallery/gallery.latte', [
+        'breadcrumbs' => $breadcrumbs,
+        'galleries' => $galleries
+    ]);
+});
+
 $app->get('/people', function () use ($app, $latte) {
 
     $breadcrumbs = [

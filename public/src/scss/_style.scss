@@ -413,3 +413,23 @@ body {
 .people-name {
   text-align: center;
 }
+
+.gallery {
+  margin-bottom: 40px;
+}
+
+.gallery-item {
+  @media #{$medium-up} {
+    display: inline-block;
+  }
+  display: none;
+  margin-right: 5px;
+  margin-bottom: 5px;
+
+  &.gallery-mobile {
+    @media #{$medium-up} {
+      display: none;
+    }
+    display: inline-block;
+  }
+}

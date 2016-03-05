@@ -1,0 +1,28 @@
+{extends '../layout.latte'}
+
+{block content}
+
+    {include '../breadcrumbs.latte'}
+    <div class="content static-content">
+        <div class="row">
+            <div class="large-12 columns">
+                <h1 class="page-heading">Gallery</h1>
+
+                {foreach $galleries as $gallery}
+                    <div class="gallery">
+                        <h5>{$gallery[name]}</h5>
+                        {foreach gallery($gallery[name]) as $image}
+                            <a class="gallery-item th" href="/{$image[path]|substr:5}" data-lightbox="{$gallery[slug]}">
+                                {thumbnail($image[path], 100, 100)}
+                            </a>
+
+                            <a class="gallery-item gallery-mobile th" href="/{$image[path]|substr:5}" data-lightbox="{$gallery[slug]}">
+                                {thumbnail($image[path], 50, 50)}
+                            </a>
+                        {/foreach}
+                    </div>
+                {/foreach}
+            </div>
+        </div>
+    </div>
+{/block}
