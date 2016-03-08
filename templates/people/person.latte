@@ -24,7 +24,11 @@
 
                 <div class="row">
                     <div class="medium-6 columns">
-                        <img src="/{$person[Image]|substr:5}" alt="" title="">
+                        {if isset($person[Image])}
+                            {thumbnail($person[Image], 400, 300)}
+                        {else}
+                            {thumbnail('site:public/img/user.png', 400, 300)}
+                        {/if}
                     </div>
                     <div class="medium-6 columns">
                         {$person[Contact]|noescape}

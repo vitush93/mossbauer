@@ -27,9 +27,9 @@
                     <div class="people-thumb large-4 columns {if $iterator->isLast()}end{/if}">
                         <a class="th people-image" href="/people/{$p[Name_slug]}">
                             {if isset($p[Image])}
-                            <img src="/{$p[Image]|substr:5}" alt="" title="">
+                                {thumbnail($p[Image], 250, 180)}
                             {else}
-                            <img src="/public/img/placeholder-user.jpg" alt="" title="">
+                                {thumbnail('site:public/img/user.png', 250, 180)}
                             {/if}
                         </a>
                         <p class="people-name">
