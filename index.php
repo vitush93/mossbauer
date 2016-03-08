@@ -37,11 +37,30 @@ $app->get('/gallery', function () use ($app, $latte) {
     ];
 
     $cockpit = cockpit();
-    $galleries = $cockpit->db->find('common/galleries');
+    $galleries = $cockpit->db->find('common/galleries')->toArray();
+
+    // sort galleries by year descending
+    $years_gallery = [];
+    for ($i = 0; $i < count($galleries); $i++) {
+
+        // extract year from gallery name
+        $matched = preg_match_all('!\d+!', $galleries[$i]['name'], $matches);
+        if ($matched == 0) {
+            $year = 0; // this gallery does not have a year - move it to bottom
+        } else {
+            $year = $matches[0][0];
+        }
+
+        // index galleries as year => gallery
+        $years_gallery[$year] = $galleries[$i];
+    }
+
+    // sort gallery array by keys (year) descending
+    krsort($years_gallery);
 
     $latte->render('templates/gallery/gallery.latte', [
         'breadcrumbs' => $breadcrumbs,
-        'galleries' => $galleries
+        'galleries' => $years_gallery
     ]);
 });
 
