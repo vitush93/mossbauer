@@ -70,7 +70,7 @@ $app->get('/people', function () use ($app, $latte) {
         ['title' => 'People']
     ];
 
-    $people = collection('People')->find()->toArray();
+    $people = collection('People')->find()->sort(['Order' => 1])->toArray();
 
     $latte->render('templates/people/people.latte', [
         'breadcrumbs' => $breadcrumbs,
