@@ -4,7 +4,7 @@ body {
 }
 
 #header {
-  background: #455a64;
+  background: $header-color;
 }
 
 // temporary
@@ -18,7 +18,7 @@ body {
 
 #menu {
   min-height: 50px;
-  background: #607d8b;
+  background: $nav-color;
 }
 
 #main-menu {
@@ -56,7 +56,8 @@ body {
 
 #showcase {
   //background-color: #eee;
-  background: url('../img/congruent_pentagon.png');
+  //background: url('../img/congruent_pentagon.png');
+  background: url('../img/background.jpg') center center;
   min-height: 400px;
   color: #333;
 
@@ -81,9 +82,9 @@ body {
   font-weight: bold;
   text-shadow: none;
   &.alert {
-    background: #c95c5c;
+    background: $contrast-color;
     &:hover {
-      background: #c95c5c + 20;
+      background: $contrast-color + 20;
     }
   }
 }
@@ -108,7 +109,7 @@ body {
   font-size: 16px;
   font-weight: bold;
   //background: #2f2d2a + 30;
-  background: #2F414A;
+  background: $header-color + 60;
   color: #fff;
 }
 
@@ -137,7 +138,7 @@ body {
 }
 
 #callout {
-  background: #ECE3CA;
+  background: $callout-color;
   p {
     font-size: 20px;
     padding: 20px 15px;
@@ -150,6 +151,7 @@ body {
     padding: 8px;
     font-size: 12px;
     margin: 0;
+    background-color: $nav-color + 40;
   }
 }
 
@@ -182,10 +184,10 @@ body {
   h3 {
     font-size: 24px;
     a {
-      color: #c95c5c;
+      color: $contrast-color;
       transition: 0.1s;
       &:hover {
-        color: #c95c5c - 60;
+        color: $contrast-color - 60;
         transition: 0.1s;
       }
     }
@@ -275,7 +277,7 @@ body {
     padding: 0;
   }
   a {
-    color: #c95c5c;
+    color: $contrast-color;
     transition: 0.1s;
     &:hover {
       color: #8d2020;
@@ -300,7 +302,7 @@ body {
 }
 
 #breadcrumbs {
-  background: #ECE3CA;
+  background: $callout-color;
   .breadcrumbs {
     margin: 0;
     padding-top: 10px;
@@ -309,12 +311,12 @@ body {
     background: inherit;
     li {
       a {
-        color: #ECE3CA - 140;
+        color: $callout-color - 140;
       }
       &.current {
         font-weight: normal;
         a {
-          color: #ECE3CA - 120;
+          color: $callout-color - 120;
         }
       }
       font-size: 11px;
@@ -367,9 +369,9 @@ body {
   a {
     padding: 5px 10px;
     font-size: 14px;
-    color: #c95c5c;
+    color: $contrast-color;
     &:hover {
-      color: #8d2020;
+      color: $contrast-color;
       text-decoration: underline;
     }
     &.active {
