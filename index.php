@@ -55,18 +55,6 @@ $app->get('/gallery', function () use ($app, $latte) {
         $years_gallery[$year] = $galleries[$i];
     }
 
-    // sort images in galleries by file name ascending
-    foreach ($galleries as $gal) {
-        usort($gal['images'], function ($a, $b) {
-            $ret = function ($a) {return array_pop(explode('/', $a['path']));};
-
-            $file = $ret($a);
-            $file2 = $ret($b);
-
-            return strcmp($file, $file2);
-        });
-    }
-
     // sort gallery array by keys (year) descending
     krsort($years_gallery);
 

@@ -9,9 +9,19 @@
                 <h1 class="page-heading">Gallery</h1>
 
                 {foreach $galleries as $gallery}
+                    <?php
+                    usort($gallery['images'], function ($a, $b) {
+                        $ret = function ($a) { return array_pop(explode('/', $a['path']));};
+
+                        $file = $ret($a);
+                        $file2 = $ret($b);
+
+                        return strcmp($file, $file2);
+                    });
+                    ?>
                     <div class="gallery">
                         <h5>{$gallery[name]}</h5>
-                        {foreach gallery($gallery[name]) as $image}
+                        {foreach $gallery[images] as $image}
                             <a class="gallery-item th" href="/{$image[path]|substr:5}" data-lightbox="{$gallery[slug]}">
                                 {thumbnail($image[path], 100, 100)}
                             </a>
