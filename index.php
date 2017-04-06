@@ -19,7 +19,7 @@ $app->get('/', function () {
     $upcoming = collection('Upcoming')->find(function ($item) {
         $date = new \Nette\Utils\DateTime($item['Date']);
 
-        return $date > new \Nette\Utils\DateTime();
+        return $date > new \Nette\Utils\DateTime('-1 day');
     })->limit(5)->sort(['Date' => 1])->toArray();
 
     $news = collection('News')->find()->sort(['created' => -1])->toArray();
