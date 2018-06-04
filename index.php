@@ -30,6 +30,21 @@ $app->get('/', function () {
     ]);
 });
 
+$app->get('/upcoming', function () use ($app, $latte) {
+
+    $breadcrumbs = [
+        ['title' => 'Events']
+    ];
+
+    $upcoming = collection('Upcoming')->find()
+        ->sort(['Date' => 1])->toArray();
+
+    $latte->render('templates/upcoming/upcoming.latte', [
+        'breadcrumbs' => $breadcrumbs,
+        'upcoming' => $upcoming
+    ]);
+});
+
 $app->get('/gallery', function () use ($app, $latte) {
 
     $breadcrumbs = [
@@ -90,6 +105,21 @@ $app->get('/people/:slug', function ($slug) use ($app, $latte) {
     $latte->render('templates/people/person.latte', [
         'breadcrumbs' => $breadcrumbs,
         'person' => $person
+    ]);
+});
+
+$app->get('/publications', function () use ($app, $latte) {
+
+    $breadcrumbs = [
+        ['title' => 'Publications']
+    ];
+
+    $publications = collection('Publications')->find()->sort(['Year' => -1])->toArray();
+    $json = json_encode($publications);
+
+    $latte->render('templates/publications/publications.latte', [
+        'breadcrumbs' => $breadcrumbs,
+        'json' => $json
     ]);
 });
 

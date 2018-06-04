@@ -1,0 +1,172 @@
+{extends '../layout.latte'}
+
+{block content}
+
+    {include '../breadcrumbs.latte'}
+    <div class="content static-content">
+        <div class="row">
+            <div class="large-12 columns">
+                <h1 class="page-heading">{$breadcrumbs[0]['title']}</h1>
+
+                <div class="row">
+                    <div class="medium-6 columns">
+                        <input id="js-publications-title" class="publication-filter" type="checkbox" checked><label
+                                for="js-publications-title">Show paper titles</label>
+                        <input id="js-publications-best" class="publication-filter" type="checkbox"><label
+                                for="js-publications-best">Show best papers</label>
+                    </div>
+                    <div class="medium-6 columns">
+                        <input type="text" id="js-publications-search" placeholder="Search publications..">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="large-12 column">
+                        <ul id="js-publications-container" class="publications"></ul>
+
+                        <button class="button tiny" style="display: block;margin:auto"
+                                id="js-publications-more">Show older publications</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{/block}
+
+{block scripts}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/2.6.1/fuse.min.js"></script>
+    <script>
+        // Global toggles
+        var showTitles = true;
+        var bestOnly = false;
+        var hideOld = true;
+
+        /**
+         * Render single publication row.
+         *
+         * @param pub
+         */
+        function renderPublication(pub) {
+            var html = '<li data-year="' + pub.Year + '">' + pub.Authors + ': <span class="pub-italic">' + pub.Title + '</span>, ' + pub.Journal + ' <strong>' + pub.Volume + '</strong>' + (pub.Issue ? ('(' + pub.Issue + ')') : '') + ' (' + pub.Year + ') ' + pub.Pages;
+            if (pub.DOI) {
+                html += ' <a href="' + pub.DOIURL + '" class="pub-link" target="_blank">DOI: ' + pub.DOI + ' <i class="fa fa-external-link"></i></a></li>'
+            } else {
+                html += '</li>';
+            }
+
+            return html;
+        }
+
+        /**
+         * Render single publication row without title.
+         *
+         * @param pub
+         */
+        function renderPublicationNoTitle(pub) {
+            var html = '<li data-year="' + pub.Year + '">' + pub.Authors + ', ' + pub.Journal + ' <strong>' + pub.Volume + '</strong>' + (pub.Issue ? ('(' + pub.Issue + ')') : '') + ' (' + pub.Year + ') ' + pub.Pages;
+            if (pub.DOI) {
+                html += ' <a href="' + pub.DOIURL + '" class="pub-link" target="_blank">DOI: ' + pub.DOI + ' <i class="fa fa-external-link"></i></a></li>'
+            } else {
+                html += '</li>';
+            }
+
+            return html;
+        }
+
+        /**
+         * Render given collection of publications.
+         *
+         * @param arr
+         */
+        function renderPublications(arr) {
+            var html = '';
+            for (var i = 0, len = arr.length; i < len; i++) {
+                if (bestOnly && !arr[i].Best) continue;
+
+                if (showTitles) {
+                    html += renderPublication(arr[i]);
+                } else {
+                    html += renderPublicationNoTitle(arr[i]);
+                }
+            }
+
+            return html;
+        }
+
+        /**
+         * Performs search based on query in text box.
+         */
+        function searchPublications() {
+            var query = $('#js-publications-search').val();
+
+            var html = '';
+            if (query.length === 0) {
+                html = renderPublications(publications);
+            } else {
+                var results = fuse.search(query);
+                html = renderPublications(results);
+            }
+
+            if (hideOld) {
+                $('#js-publications-container').html(html).find('li').each(function () {
+                    var curr_year = new Date().getFullYear();
+                    var year = $(this).data('year');
+
+                    if (Math.abs(year - curr_year) > 2) $(this).hide();
+                });
+                $('#js-publications-more').show();
+            } else {
+                $('#js-publications-container').html(html).find('li').show();
+                $('#js-publications-more').hide();
+            }
+        }
+
+        // Initial setup and render
+        var publications = JSON.parse({$json});
+        for (var i = 0; i < publications.length; i++) {
+            publications[i].Year = '' + publications[i].Year;
+        }
+        $(document).ready(function () {
+            searchPublications();
+        });
+
+        // Search engine options
+        var options = {
+            keys: ['Authors', 'Title', 'Year', 'Journal'],
+            shouldSort: false,
+            tokenize: true,
+            matchAllTokens: true,
+            threshold: 0.0,
+            location: 0,
+            distance: 100,
+            maxPatternLength: 32,
+            minMatchCharLength: 1
+        };
+        var fuse = new Fuse(publications, options);
+
+        // Handle search box
+        $('#js-publications-search').keyup(function () {
+            var query = $(this).val();
+            hideOld = query.length === 0;
+
+            searchPublications();
+        });
+
+        // Handle toggle buttons
+        $('#js-publications-title, #js-publications-best').change(function () {
+            showTitles = $('#js-publications-title').is(':checked');
+            bestOnly = $('#js-publications-best').is(':checked');
+
+            hideOld = !bestOnly;
+
+            searchPublications();
+        });
+
+        // Show more button
+        $('#js-publications-more').click(function () {
+            $('#js-publications-container').find('li').show();
+            $(this).hide();
+        });
+    </script>
+{/block}

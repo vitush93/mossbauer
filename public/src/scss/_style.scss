@@ -137,6 +137,11 @@ body {
   }
 }
 
+#calendar-footer {
+  background: #eee;
+  padding: 10px;
+}
+
 #callout {
   background: $callout-color;
   p {
@@ -446,4 +451,14 @@ body {
   line-height: 10px !important;
   color: #fff !important;
   font-size: 13px !important;
+}
+
+.pub-italic {
+  font-style: italic;
+}
+
+.publications {
+  li {
+    padding-bottom: 10px;
+  }
 }

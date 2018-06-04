@@ -8,9 +8,9 @@ public/src/js/templates.js
 
 # server stuff
 vendor/
-!admin/vendor
-!admin/assets/vendor
+admin/
+upload/
 config.php
-
+composer.lock
 
 

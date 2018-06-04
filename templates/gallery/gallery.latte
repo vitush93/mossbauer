@@ -11,7 +11,11 @@
                 {foreach $galleries as $gallery}
                     <?php
                     usort($gallery['images'], function ($a, $b) {
-                        $ret = function ($a) { return array_pop(explode('/', $a['path']));};
+                        $ret = function ($a) {
+                            $parts = explode('/', $a['path']);
+
+                            return array_pop($parts);
+                        };
 
                         $file = $ret($a);
                         $file2 = $ret($b);

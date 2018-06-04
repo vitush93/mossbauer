@@ -1,0 +1,24 @@
+{extends '../layout.latte'}
+
+{block content}
+
+    {include '../breadcrumbs.latte'}
+    <div class="content static-content">
+
+
+        <div class="row">
+            <div class="large-12 columns">
+                <h1 class="page-heading">Events</h1>
+                <p>Complete list of important dates:</p>
+                <table style="width:100%">
+                    {foreach $upcoming as $u}
+                        <tr>
+                            <th style="text-align: right"><strong>{$u[Date]|date:'M j Y'}</strong></th>
+                            <td><a href="{$u[Link]}" target="_blank">{$u[Title]}</a></td>
+                        </tr>
+                    {/foreach}
+                </table>
+            </div>
+        </div>
+    </div>
+{/block}
